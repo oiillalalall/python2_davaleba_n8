@@ -1,0 +1,81 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home | CineVerse{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <span class="hero-badge">
+                    ✦ YOUR NEXT MOVIE STARTS HERE
+                </span>
+
+                <h1 class="hero-title mb-4">
+                    Discover films.<br>
+                    <span class="accent-text">Feel more.</span>
+                </h1>
+
+                <p class="hero-description mb-4">
+                    Welcome to CineVerse — a place for movie lovers.
+                    Discover unforgettable stories, explore different
+                    genres, and find your next favorite film.
+                </p>
+
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{% url 'films' %}" class="btn-main">
+                        Explore Films &nbsp; →
+                    </a>
+
+                    <a href="#about" class="btn-outline-custom">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="d-flex gap-5 mt-5">
+                    <div>
+                        <h3 class="fw-bold mb-1">06+</h3>
+                        <small class="movie-meta">Featured films</small>
+                    </div>
+
+                    <div>
+                        <h3 class="fw-bold mb-1">∞</h3>
+                        <small class="movie-meta">Stories to discover</small>
+                    </div>
+
+                    <div>
+                        <h3 class="fw-bold mb-1">★</h3>
+                        <small class="movie-meta">Movie ratings</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-decoration">🎬</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5" id="about">
+    <div class="row align-items-center g-4">
+        <div class="col-md-6">
+            <span class="section-label">ABOUT CINEVERSE</span>
+            <h2 class="fw-bold mt-3">
+                Every movie has a story.
+            </h2>
+        </div>
+
+        <div class="col-md-6">
+            <p class="hero-description mb-0">
+                From mind-bending science fiction to unforgettable
+                dramas, CineVerse helps you explore movies and
+                discover something worth watching.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

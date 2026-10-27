@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CineVerse{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #09090f;
+            --surface: #13131d;
+            --accent: #a78bfa;
+            --text: #f5f3ff;
+            --muted: #9b9bb0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background: rgba(9, 9, 15, 0.92);
+            border-bottom: 1px solid #252535;
+            padding: 18px 0;
+        }
+
+        .navbar-brand {
+            font-size: 25px;
+            font-weight: 800;
+            color: white !important;
+            letter-spacing: -1px;
+        }
+
+        .brand-dot {
+            color: var(--accent);
+        }
+
+        .nav-link {
+            color: #b8b8cb !important;
+            margin-left: 18px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .accent-text {
+            color: var(--accent);
+        }
+
+        .btn-main {
+            background: var(--accent);
+            color: #100c1b;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-main:hover {
+            background: #c4b5fd;
+            color: #100c1b;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-custom {
+            color: white;
+            border: 1px solid #424256;
+            padding: 13px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .section-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .movie-card {
+            background: var(--surface);
+            border: 1px solid #262638;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 100%;
+            transition: 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px #00000045;
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            background: #202031;
+        }
+
+        .movie-info {
+            padding: 20px;
+        }
+
+        .movie-title {
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .movie-meta {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .rating {
+            color: #facc15;
+            font-weight: 700;
+        }
+
+        .movie-status {
+            font-size: 12px;
+            padding: 7px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 13px;
+        }
+
+        .good {
+            background: #173d32;
+            color: #6ee7b7;
+        }
+
+        .standard {
+            background: #343044;
+            color: #c4b5fd;
+        }
+
+        footer {
+            border-top: 1px solid #252535;
+            color: var(--muted);
+            padding: 28px 0;
+            margin-top: 80px;
+        }
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 80% 40%, #6d28d933, transparent 40%),
+                radial-gradient(ellipse at 15% 90%, #4f46e522, transparent 40%);
+        }
+
+        .hero-title {
+            font-size: clamp(44px, 7vw, 82px);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -4px;
+        }
+
+        .hero-description {
+            max-width: 540px;
+            color: var(--muted);
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid #39314e;
+            background: #a78bfa12;
+            color: #c4b5fd;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .hero-decoration {
+            font-size: 190px;
+            text-align: center;
+            filter: drop-shadow(0 0 40px #a78bfa25);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                letter-spacing: -2px;
+            }
+
+            .hero-decoration {
+                font-size: 100px;
+                margin-top: 40px;
+            }
+
+            .movie-poster {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            CineVerse<span class="brand-dot">.</span>
+        </a>
+
+        <button class="navbar-toggler bg-light" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <div class="navbar-nav ms-auto align-items-lg-center">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" href="{% url 'films' %}">Films</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+        <span>CineVerse<span class="accent-text">.</span></span>
+        <span>Made for movie lovers 🎬</span>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

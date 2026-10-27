@@ -1,0 +1,90 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Films | CineVerse{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+        <p class="text-uppercase fw-bold"
+           style="color: #a78bfa; letter-spacing: 4px;">
+            OUR COLLECTION
+        </p>
+
+        <h1 class="display-3 fw-bold">
+            Favorite <span style="color: #a78bfa;">Films.</span>
+        </h1>
+
+        <p class="text-secondary mt-3">
+            Discover movies worth watching.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        {% for film in films %}
+
+        <div class="col-12 col-md-6 col-lg-4">
+
+            <div class="p-4 h-100 rounded-4"
+                 style="background: #13131d;
+                        border: 1px solid #29293b;
+                        transition: 0.3s;">
+
+                <div class="d-flex justify-content-between
+                            align-items-center mb-4">
+
+                    <span style="color: #a78bfa; font-size: 13px;">
+                        MOVIE COLLECTION
+                    </span>
+
+                    <span style="color: #facc15; font-weight: bold;">
+                        ★ {{ film.rating }}
+                    </span>
+
+                </div>
+
+                <h2 class="fw-bold mb-3">
+                    {{ film.title }}
+                </h2>
+
+                <div style="height: 1px; background: #29293b;"></div>
+
+                {% if film.rating > 8 %}
+
+                    <div class="mt-4 p-3 rounded-3"
+                         style="background: #173d32; color: #6ee7b7;">
+                        ✓ კარგი ფილმია
+                    </div>
+
+                {% else %}
+
+                    <div class="mt-4 p-3 rounded-3"
+                         style="background: #343044; color: #c4b5fd;">
+                        ● სტანდარტული ფილმია
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'home' %}"
+           class="btn btn-lg rounded-3 px-4"
+           style="background: #a78bfa; color: #100c1b;
+                  font-weight: bold;">
+            ← Back to Home
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}
